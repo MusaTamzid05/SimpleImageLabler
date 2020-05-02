@@ -21,6 +21,8 @@ namespace App {
             std::string window_name;
             cv::Mat image;
 
+            static void mouse_callback(int event , int x ,int y , int flags , void* userdata);
+
 
 
     };

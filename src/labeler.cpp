@@ -18,6 +18,8 @@ namespace App {
             if(Util::should_resize(image))
                 cv::resize(image , image , cv::Size(Const::WIDTH , Const::HEIGHT));
 
+        cv::namedWindow(window_name , cv::WINDOW_NORMAL);
+        cv::setMouseCallback(window_name , mouse_callback , nullptr);
     }
 
     Labeler::~Labeler() {
@@ -36,12 +38,26 @@ namespace App {
 
         while(running) {
 
-            Util::show_image(image , "Window" , false);
+            
+            cv::imshow(window_name , image);
 
             if(cv::waitKey(0) == 27){
                 running = false;
             }
         }
     }
+    
+    
+    void Labeler::mouse_callback(int event , int x ,int y , int flags , void* userdata) {
 
+        if(event == cv::EVENT_LBUTTONDOWN) {
+            std::cout << "mouse button down.\n";
+        }
+
+
+
+        if(event == cv::EVENT_LBUTTONUP) {
+            std::cout << "mouse button up.\n";
+        }
+    }
 };
