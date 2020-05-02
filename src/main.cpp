@@ -1,8 +1,9 @@
-#include "util.h"
+#include "labeler.h"
 
 
 int main(int argc , char** argv) {
 
-    Util::show_image("../test.jpg");
+    App::Labeler labeler("../test.jpg");
+    labeler.run();
     return 0;
 }
