@@ -1,4 +1,5 @@
 #include "util.h"
+#include "const.h"
 #include <iostream>
 
 namespace Util {
@@ -24,5 +25,10 @@ namespace Util {
 
         if(delay)
             cv::waitKey(0);
+    }
+
+
+    bool should_resize(const cv::Mat& image) {
+        return image.size().width > Const::WIDTH || image.size().height > Const::HEIGHT;
     }
 };

@@ -1,5 +1,6 @@
 #include "labeler.h"
 #include "util.h"
+#include "const.h"
 
 namespace App {
 
@@ -13,6 +14,9 @@ namespace App {
                 std::cerr << "Could not read " << image_path << "\n";
                 return;
             }
+
+            if(Util::should_resize(image))
+                cv::resize(image , image , cv::Size(Const::WIDTH , Const::HEIGHT));
 
     }
 
