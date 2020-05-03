@@ -12,14 +12,15 @@ namespace App {
 
         public:
 
-            Labeler(const std::string& image_path , const std::string& window_name = "Window");
+            Labeler(const std::string& window_name = "Window");
             virtual ~Labeler();
 
-            void run(const std::string& save_dir);
+            void run(const std::string& image_path , const std::string& save_dir);
 
         private:
 
-            void save(const std::string& save_dir);
+            bool load_image(const std::string& image_path);
+            void save(const std::string& image_path , const std::string& save_dir);
 
             std::string window_name;
             cv::Mat src_image;

@@ -8,19 +8,9 @@ namespace App {
     Rect* Labeler::rect = nullptr;
     bool Labeler::track_mouse = false;
 
-    Labeler::Labeler(const std::string& image_path , const std::string& window_name):
-        window_name(window_name),
-        image_path(image_path){
+    Labeler::Labeler(const std::string& window_name):
+        window_name(window_name){
             
-            src_image= cv::imread(image_path);
-
-            if(src_image.empty()) {
-                std::cerr << "Could not read " << image_path << "\n";
-                return;
-            }
-
-            if(Util::should_resize(src_image))
-                cv::resize(src_image , src_image , cv::Size(Const::WIDTH , Const::HEIGHT));
 
         cv::namedWindow(window_name , cv::WINDOW_NORMAL);
         cv::setMouseCallback(window_name , mouse_callback , nullptr);
@@ -30,8 +20,13 @@ namespace App {
         cv::destroyWindow(window_name);
     }
 
-    void Labeler::run(const std::string& save_dir) {
+    void Labeler::run(const std::string& image_path , const std::string& save_dir) {
 
+        this->image_path = image_path;
+        if(!load_image(image_path)){
+            std::cerr << "Could not read " << image_path << "\n";
+            return;
+        }
 
         if(src_image.empty()) {
             std::cerr << "Valid image is required.\n";
@@ -52,7 +47,7 @@ namespace App {
             }
         }
 
-        save(save_dir);
+        save(image_path , save_dir);
     }
     
     
@@ -94,7 +89,7 @@ namespace App {
         cv::rectangle(result_image , cv::Point(rect->x1 , rect->y1) , cv::Point(rect->x2, rect->y2), cv::Scalar(200.0f , 0.f , 0.f));
     }
 
-    void Labeler::save(const std::string& save_dir) {
+    void Labeler::save(const std::string& image_path , const std::string& save_dir) {
 
         if(rect == nullptr) {
             std::cout << "Cannot save image,no rect created.\n";
@@ -116,5 +111,19 @@ namespace App {
         std::cout << "Data saved in " << save_data_path << "\n";
 
 
+    }
+
+    bool Labeler::load_image(const std::string& image_path) {
+
+        src_image = cv::imread(image_path);
+
+        if(src_image.empty()) {
+            return false;
+        }
+
+        if(Util::should_resize(src_image))
+            cv::resize(src_image , src_image , cv::Size(Const::WIDTH , Const::HEIGHT));
+
+        return true;
     }
 };
