@@ -57,7 +57,6 @@ namespace App {
 
         if(event == cv::EVENT_LBUTTONDOWN) {
             track_mouse = true;
-            std::cout << "mouse button down.\n";
             rect = new Rect(x , y , x ,y);
 
         }
@@ -68,7 +67,6 @@ namespace App {
 
             rect->x2 = x;
             rect->y2 = y;
-            std::cout << "mouse button up.\n";
             track_mouse = false;
         }
 
@@ -80,7 +78,6 @@ namespace App {
             rect->y2 = y;
         }
         
-        //std::cout << rect->x1 << " "  << rect->y1 << " " << rect->x2 << " " << rect->y2 << "\n";
     }
 
 
