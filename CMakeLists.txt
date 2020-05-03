@@ -10,10 +10,10 @@ SET(Source
     src/labeler.cpp
     src/rect.cpp
     )
-find_package(OpenCV REQUIRED)
+find_package(OpenCV )
 add_executable(testas ${Source})
 
 
 include_directories(include)
-target_link_libraries(testas ${OpenCV_LIBS})
+target_link_libraries(testas ${OpenCV_LIBS} boost_system boost_filesystem)
 
