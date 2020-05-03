@@ -8,6 +8,7 @@ SET(Source
     src/main.cpp
     src/util.cpp
     src/labeler.cpp
+    src/rect.cpp
     )
 find_package(OpenCV REQUIRED)
 add_executable(testas ${Source})
