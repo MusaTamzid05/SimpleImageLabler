@@ -44,6 +44,7 @@ namespace App {
 
             if(cv::waitKey(1) == 27){
                 running = false;
+
             }
         }
 
@@ -109,6 +110,7 @@ namespace App {
         Util::write_file(save_data_path , details);
 
         std::cout << "Data saved in " << save_data_path << "\n";
+        rect = nullptr;
 
 
     }
