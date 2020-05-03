@@ -100,8 +100,9 @@ namespace App {
             std::cout << "Cannot save image,no rect created.\n";
             return;
         }
-        
-        std::vector<std::string> data = Util::split("../test.jpg" , '/');
+    
+
+        std::vector<std::string> data = Util::split(image_path, '/');
         std::string filename = data[data.size() -1];
         std::string save_image_path = save_dir + "/" + filename;
 
