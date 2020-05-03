@@ -15,9 +15,11 @@ namespace App {
             Labeler(const std::string& image_path , const std::string& window_name = "Window");
             virtual ~Labeler();
 
-            void run();
+            void run(const std::string& save_dir);
 
         private:
+
+            void save(const std::string& save_dir);
 
             std::string window_name;
             cv::Mat src_image;
@@ -29,6 +31,7 @@ namespace App {
             void draw_rect();
             
             static bool track_mouse;
+            std::string image_path;
 
 
     };
